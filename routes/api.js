@@ -10,7 +10,7 @@
 
 module.exports = function (app) {
   let books = [];
-  let counter = -1;
+  let counter = 0;
 
   app.route('/api/books')
     .get(function (req, res){
@@ -28,7 +28,10 @@ module.exports = function (app) {
             "commentcount": 0
           };
           books.push(newBook);
-//          return res.json(newBook);
+          return res.json({
+            "_id": newBook._id,
+            "title": newBook.title
+          });
     })
     
     .delete(function(req, res){
