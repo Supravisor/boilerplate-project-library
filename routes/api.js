@@ -35,7 +35,7 @@ module.exports = function (app) {
         '_id': counter++
       });
       console.log("post: ", title, response);
-      return res.json(books[response]);
+      return res.json(books[response - 1]);
 
 /*
       for (let i = 0; i < books.length; i++) {
