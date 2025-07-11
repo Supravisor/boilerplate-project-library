@@ -16,12 +16,17 @@ module.exports = function (app) {
     .get(function (req, res){
       //response will be array of book objects
       //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
+      let title = req.body.title;
       return res.json(books);
     })
     
     .post(function (req, res){
       let title = req.body.title;
       //response will contain new book object including atleast _id and title
+        if (title === "") {
+          return res.json({result: "missing required field title"});
+        }
+
           let newBook = {
             "_id": counter++,
             "title": title,
