@@ -23,8 +23,8 @@ module.exports = function (app) {
     .post(function (req, res){
       let title = req.body.title;
       //response will contain new book object including atleast _id and title
-        if (title === "") {
-          return res.json({result: "missing required field title"});
+        if (!title) {
+          return res.json("missing required field title");
         }
 
           let newBook = {
