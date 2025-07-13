@@ -66,6 +66,8 @@ module.exports = function (app) {
       } else if (Number(bookid) <= books.length) {
             books[Number(bookid)].comments.push(comment);
             return res.json(books[Number(bookid)]);
+      } else {
+          return res.json("no book exists");
       }
     })
     
