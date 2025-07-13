@@ -49,8 +49,10 @@ module.exports = function (app) {
     .get(function (req, res){
       let bookid = req.params.id;
       //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
-      if (Number(bookid) >= 0) {
+      if (Number(bookid) <= books.length) {
         return res.json(books[Number(bookid)]);
+      } else {
+          return res.json("no book exists");
       }
     })
     
