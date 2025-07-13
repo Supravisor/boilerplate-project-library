@@ -49,6 +49,9 @@ module.exports = function (app) {
     .get(function (req, res){
       let bookid = req.params.id;
       //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
+      if (Number(bookid) >= 0) {
+        return res.json(books[Number(bookid)]);
+      }
     })
     
     .post(function(req, res){
