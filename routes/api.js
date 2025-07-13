@@ -28,6 +28,7 @@ module.exports = function (app) {
         }
 
           let newBook = {
+            "comments": [],
             "_id": counter++,
             "title": title,
             "commentcount": 0
@@ -49,6 +50,11 @@ module.exports = function (app) {
     .get(function (req, res){
       let bookid = req.params.id;
       //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
+      if (Number(bookid) <= books.length) {
+        return res.json(books[Number(bookid)]);
+      } else {
+          return res.json("no book exists");
+      }
     })
     
     .post(function(req, res){
