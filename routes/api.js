@@ -28,6 +28,7 @@ module.exports = function (app) {
         }
 
           let newBook = {
+            "comment": [],
             "_id": counter++,
             "title": title,
             "commentcount": 0
