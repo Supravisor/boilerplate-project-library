@@ -63,6 +63,9 @@ module.exports = function (app) {
       //json res format same as .get
       if (!comment) {
           return res.json("missing required field comment");
+      } else if (Number(bookid) <= books.length) {
+            books[Number(bookid)].comments.push(comment);
+            return res.json(books[Number(bookid)]);
       }
     })
     
