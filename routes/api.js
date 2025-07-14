@@ -74,6 +74,11 @@ module.exports = function (app) {
     .delete(function(req, res){
       let bookid = req.params.id;
       //if successful response will be 'delete successful'
+      if (Number(bookid) >= 0) {
+        books.splice(Number(bookid), 1);
+        return res.json("delete successful");
+      } else {
+          return res.json("no book exists");
+      }
     });
-  
 };
