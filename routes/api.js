@@ -61,6 +61,14 @@ module.exports = function (app) {
       let bookid = req.params.id;
       let comment = req.body.comment;
       //json res format same as .get
+      if (!comment) {
+          return res.json("missing required field comment");
+      } else if (Number(bookid) <= books.length) {
+            books[Number(bookid)].comments.push(comment);
+            return res.json(books[Number(bookid)]);
+      } else {
+          return res.json("no book exists");
+      }
     })
     
     .delete(function(req, res){
