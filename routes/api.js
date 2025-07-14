@@ -77,7 +77,8 @@ module.exports = function (app) {
       if (Number(bookid) >= 0) {
         books.splice(Number(bookid), 1);
         return res.json("delete successful");
+      } else {
+          return res.json("no book exists");
       }
     });
-  
 };
