@@ -72,7 +72,15 @@ suite('Functional Tests', function() {
     suite('GET /api/books => array of books', function(){
       
       test('Test GET /api/books',  function(done){
-        //done();
+        chai.request(server)
+          .get( '/api/books' )
+          .end(function(err, res){
+            assert.equal(res.status, 200);
+            assert.isArray(res.body, 'response should be an object');
+            assert.property(res.body[0], 'title', 'Books in array should contain title');
+            assert.property(res.body[0], '_id', 'Books in array should contain _id');
+            done();
+          });
       });      
       
     });
