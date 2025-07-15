@@ -119,7 +119,21 @@ suite('Functional Tests', function() {
     suite('POST /api/books/[id] => add comment/expect book object with id', function(){
       
       test('Test POST /api/books/[id] with comment', function(done){
-        //done();
+        chai.request(server)
+          .post( '/api/books/0' )
+          .send( {
+            "comment": "Test comment"
+          } )
+          .end(function(err, res){
+            assert.equal(res.status, 200);
+            assert.isObject(res.body, 'response should be an object');
+            assert.property(res.body, 'comments', 'Books in object should contain comments');
+            assert.property(res.body, '_id', 'Books in object should contain _id');
+            assert.property(res.body, 'title', 'Books in object should contain title');
+            assert.property(res.body, 'commentcount', 'Books in object should contain commentcount');
+            assert.include(res.body.comments, 'Test comment', 'Books in comments array should contain text');
+            done();
+          });
       });
 
       test('Test POST /api/books/[id] without comment field', function(done){
