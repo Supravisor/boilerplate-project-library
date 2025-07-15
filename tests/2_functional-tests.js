@@ -145,7 +145,7 @@ suite('Functional Tests', function() {
       });
       
     });
-/*
+
     suite('DELETE /api/books/[id] => delete book object id', function() {
 
       test('Test DELETE /api/books/[id] with valid id in db', function(done){
@@ -157,7 +157,7 @@ suite('Functional Tests', function() {
       });
 
     });
-*/
+
   });
 
 });
