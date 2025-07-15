@@ -151,7 +151,17 @@ suite('Functional Tests', function() {
       });
 
       test('Test POST /api/books/[id] with comment, id not in db', function(done){
-        //done();
+        chai.request(server)
+          .post( '/api/books/:1' )
+          .send( {
+            "comment": "Second comment",
+          } )
+          .end(function(err, res){
+            assert.equal(res.status, 200);
+            assert.isString(res.body, 'response should be a string');
+            assert.include(res.body, 'no book exists', 'Response should contain text');
+            done();
+          });
       });
       
     });
