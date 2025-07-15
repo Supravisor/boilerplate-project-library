@@ -67,6 +67,7 @@ module.exports = function (app) {
           return res.json("missing required field comment");
       } else if (Number(bookid) <= books.length) {
             books[Number(bookid)].comments.push(comment);
+            books[Number(bookid)].commentcount++;
             return res.json(books[Number(bookid)]);
       } else {
           return res.json("no book exists");
