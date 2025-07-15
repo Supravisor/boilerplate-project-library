@@ -169,7 +169,17 @@ suite('Functional Tests', function() {
     suite('DELETE /api/books/[id] => delete book object id', function() {
 
       test('Test DELETE /api/books/[id] with valid id in db', function(done){
-        //done();
+        chai.request(server)
+          .delete( '/api/books/' )
+          .send( {
+            "_id": 0
+          } )
+          .end(function(err, res){
+            assert.equal(res.status, 200);
+            assert.isString(res.body, 'response should be a string');
+            assert.include(res.body, 'delete successful', 'Reponse should include a string');
+            done();
+          });
       });
 
       test('Test DELETE /api/books/[id] with  id not in db', function(done){
