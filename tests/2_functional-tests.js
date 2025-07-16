@@ -183,7 +183,14 @@ suite('Functional Tests', function() {
       });
 
       test('Test DELETE /api/books/[id] with  id not in db', function(done){
-        //done();
+        chai.request(server)
+          .delete( '/api/books/:1' )
+          .end(function(err, res){
+            assert.equal(res.status, 200);
+            assert.isString(res.body, 'response should be a string');
+            assert.include(res.body, 'no book exists', 'Reponse should include a string');
+            done();
+          });
       });
 
     });
